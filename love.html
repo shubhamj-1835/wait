@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>For My Special One ❤️</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 90%);
+      color: #fef3c7;
+      overflow-x: hidden;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    h1, h2 {
+      font-family: 'Great Vibes', cursive;
+      text-shadow: 0 0 8px #f9a8d4;
+    }
+    button {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Typewriter Effect */
+    .typewriter-text {
+      border-right: 3px solid #f9a8d4;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+      font-size: 1.25rem;
+      max-width: 90vw;
+      margin: auto;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #f9a8d4 }
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: fixed;
+      color: #f472b6;
+      font-size: 24px;
+      animation: floatUp 6s ease-in-out infinite;
+      opacity: 0.75;
+      user-select: none;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-10vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Confetti Canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10000;
+    }
+
+    /* Letter text glow */
+    .glow-text {
+      color: #f9a8d4;
+      text-shadow:
+        0 0 5px #f9a8d4,
+        0 0 10px #f9a8d4,
+        0 0 20px #f9a8d4,
+        0 0 40px #f472b6;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Floating Hearts -->
+  <script>
+    const hearts = ['💖', '💕', '❤️', '💘', '💞', '💗', '💓'];
+    function spawnHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 3) + 's';
+      heart.style.fontSize = (16 + Math.random() * 16) + 'px';
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(spawnHeart, 300);
+  </script>
+
+  <!-- Landing Section -->
+  <section id="landing" class="flex flex-col items-center justify-center min-h-screen text-center px-6 bg-gradient-to-b from-pink-900 via-purple-900 to-indigo-900">
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text">Hey There, Gorgeous ✨</h1>
+    <p class="typewriter-text mb-10">I have a little surprise just for you...</p>
+    <button id="startBtn" class="bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg text-lg md:text-xl">Open the Surprise 💌</button>
+  </section>
+
+  <!-- Quiz Section -->
+  <section id="quiz" class="hidden min-h-screen bg-gradient-to-b from-purple-900 via-pink-900 to-red-900 px-6 flex flex-col items-center justify-center text-center text-yellow-100">
+    <h2 class="text-4xl md:text-5xl font-bold mb-8 glow-text">Who do you think I’ve fallen for?</h2>
+    <div class="w-full max-w-md space-y-6">
+      <button class="quiz-btn bg-yellow-400 text-purple-900 font-bold py-3 rounded-full shadow-md hover:bg-yellow-300" data-correct="false">You</button>
+      <button class="quiz-btn bg-yellow-400 text-purple-900 font-bold py-3 rounded-full shadow-md hover:bg-yellow-300" data-correct="false">Still You</button>
+      <button class="quiz-btn bg-yellow-400 text-purple-900 font-bold py-3 rounded-full shadow-md hover:bg-yellow-300" data-correct="true">Always You ❤️</button>
+    </div>
+    <p id="quiz-feedback" class="mt-8 text-lg font-semibold"></p>
+  </section>
+
+  <!-- Video Section -->
+  <section id="videoSection" class="hidden bg-black min-h-screen flex flex-col items-center justify-center px-4 py-10">
+    <h2 class="text-4xl text-pink-400 font-bold mb-8 glow-text text-center max-w-xl">Some moments speak louder than words...</h2>
+    <video id="proposalVideo" controls class="rounded-lg shadow-lg max-w-full w-full max-w-lg" playsinline>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Sorry, your browser does not support embedded videos.
+    </video>
+    <button id="toLetterBtn" class="mt-10 bg-pink-600 hover:bg-pink-700 text-white font-semibold py-3 px-10 rounded-full shadow-lg text-lg">Read My Letter 💌</button>
+  </section>
+
+  <!-- Love Letter Section -->
+  <section id="letterSection" class="hidden min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-900 via-pink-700 to-pink-900 px-6 text-center text-yellow-100">
+    <h2 class="text-5xl font-bold mb-6 glow-text">💖 A Little Something for You</h2>
+    <p id="letterText" class="max-w-xl text-lg md:text-xl leading-relaxed whitespace-pre-line"></p>
+    <button id="celebrateBtn" class="mt-10 bg-yellow-400 hover:bg-yellow-300 text-purple-900 font-bold py-3 px-10 rounded-full shadow-lg text-lg">Read Between the Lines ✨</button>
+  </section>
+
+  <!-- Final Celebration Section -->
+  <section id="finalSection" class="hidden min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-pink-700 via-purple-700 to-indigo-900 px-6 text-center text-yellow-100">
+    <h2 class="text-6xl font-extrabold mb-6 glow-text animate-bounce">💞 It's Always Been You!</h2>
+    <p class="text-2xl max-w-xl mb-8">This isn’t just a moment, it’s our forever.<br>Let’s write our beautiful story together, side by side. ❤️</p>
+    <button id="restartBtn" class="bg-yellow-400 hover:bg-yellow-300 text-purple-900 font-bold py-3 px-10 rounded-full shadow-lg text-lg">Start Over 🔄</button>
+  </section>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <script>
+    // Elements
+    const landing = document.getElementById('landing');
+    const quiz = document.getElementById('quiz');
+    const videoSection = document.getElementById('videoSection');
+    const letterSection = document.getElementById('letterSection');
+    const finalSection = document.getElementById('finalSection');
+    const quizFeedback = document.getElementById('quiz-feedback');
+    const letterText = document.getElementById('letterText');
+    const confettiCanvas = document.getElementById('confetti-canvas');
+
+    // Letter content with hidden W-I-L-L Y-O-U message
+    const letterContent =
+`I don’t know how to describe you. You’re not just a person — you’re a feeling.
+A peace I never knew I needed, a chaos I never want to let go of.
+
+With every smile, every silly moment, every quiet pause — you’ve made your place in my heart.
+W hat if forever starts now?
+I magine us always laughing.
+L et’s keep writing this story.
+L et it unfold slowly, beautifully...
+
+Y ou mean more than you know.
+O ne day, maybe, you’ll read this again with a smile.
+U nderstand what my heart really wanted to whisper. ❤️`;
+
+    // Typewriter effect for letter
+    function typeWriter(text, i = 0) {
+      if (i < text.length) {
+        letterText.textContent += text.charAt(i);
+        setTimeout(() => typeWriter(text, i + 1), 30);
+      }
+    }
+
+    // Confetti launcher
+    function launchConfetti() {
+      const duration = 5 * 1000;
+      const animationEnd = Date.now() + duration;
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 10000 };
+
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) return clearInterval(interval);
+
+        confetti(Object.assign({}, defaults, {
+          particleCount: 50 * (timeLeft / duration),
+          origin: { x: Math.random(), y: Math.random() - 0.2 }
+        }));
+      }, 250);
+    }
+
+    // Event Handlers
+    document.getElementById('startBtn').addEventListener('click', () => {
+      landing.style.display = 'none';
+      quiz.style.display = 'flex';
+    });
+
+    document.querySelectorAll('.quiz-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.correct === 'true') {
+          quizFeedback.textContent = "You got it! 💖";
+          setTimeout(() => {
+            quiz.style.display = 'none';
+            videoSection.style.display = 'flex';
+          }, 1500);
+        } else {
+          quizFeedback.textContent = "Oops, not quite! Try again 😘";
+          setTimeout(() => {
+            quizFeedback.textContent = '';
+          }, 2000);
+        }
+      });
+    });
+
+    document.getElementById('toLetterBtn').addEventListener('click', () => {
+      videoSection.style.display = 'none';
+      letterSection.style.display = 'flex';
+      letterText.textContent = '';
+      typeWriter(letterContent);
+    });
+
+    document.getElementById('celebrateBtn').addEventListener('click', () => {
+      letterSection.style.display = 'none';
+      finalSection.style.display = 'flex';
+      launchConfetti();
+    });
+
+    document.getElementById('restartBtn').addEventListener('click', () => {
+      finalSection.style.display = 'none';
+      landing.style.display = 'flex';
+      quizFeedback.textContent = '';
+    });
+  </script>
+
+</body>
+</html>
